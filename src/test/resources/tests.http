@@ -1,0 +1,25 @@
+# C:\git\cloud-native\Chapter02\02-end\catalog-service
+### jetbrains://idea/navigate/reference?project=catalog-service&path=C:/git/cloud-native/Chapter02/02-end/catalog-service
+GET http://localhost:8080/
+
+###
+# Avec kubernetes
+GET http://localhost:8000/
+
+# C:\git\cloud-native\Chapter03\03-end\catalog-service
+### jetbrains://idea/navigate/reference?project=catalog-service&path=C:/git/cloud-native/Chapter03/03-end/catalog-service
+GET http://localhost:9001/
+
+###
+GET http://localhost:9001/books
+
+###
+POST http://localhost:9001/books
+Content-Type: application/json
+
+{
+  "isbn": "1503280799",
+  "title": "qsqsqs",
+  "author": "Herman Melville",
+  "price": 15.0
+}
