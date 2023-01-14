@@ -9,14 +9,19 @@ jobs:
       contents: read
       security-events: write
     steps:
+      # Checkout source code
       - name: Checkout source code
         uses: actions/checkout@v3
+
+      #  Set up JDK
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
           distribution: temurin
           java-version: 17
           cache: gradle
+
+      # Code vulnerability scanning
       - name: Code vulnerability scanning
         uses: anchore/scan-action@v3
         id: scan
@@ -25,17 +30,21 @@ jobs:
           fail-build: false
           severity-cutoff: high
           acs-report-enable: true
+
+      #  Upload vulnerability report
       - name: Upload vulnerability report
         uses: github/codeql-action/upload-sarif@v2
         if: success() || failure()
         with:
           sarif_file: ${{ steps.scan.outputs.sarif }}
+
       # Upload SARIF file as an Artifact to download and view
       - name: Upload SARIF as an Artifact
         uses: actions/upload-artifact@v2
         with:
           name: sarif-file
-          path: ${{ steps.run-analysis.outputs.sarif }}
+          path: ${{ steps.scan.outputs.sarif }}
+
       # Build
       - name: Build, unit tests and integration tests
         run: |
