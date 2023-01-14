@@ -99,14 +99,14 @@ class CatalogServiceApplicationTests {
         ne fonctionne pas sur plateforme Linux et/ou hors IDE
         https://stackoverflow.com/questions/47286975/timeout-on-blocking-read-for-5000-milliseconds-in-spring-webflux/48655749
         https://stackoverflow.com/questions/62838689/getting-a-lot-of-prematurecloseexception-connection-prematurely-closed-before
-    */
+
         webTestClient
                 .post()
                 .uri("/books")
                 .bodyValue(bookToCreate)
                 .exchange()
                 .expectStatus().isCreated();
-
+    */
 
         webTestClient
                 .delete()
